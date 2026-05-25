@@ -1,16 +1,68 @@
-# React + Vite
+# Proyecto 648
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web desarrollada con React + Vite como proyecto de la asignatura de Ingeniería de Software.
 
-Currently, two official plugins are available:
+## Equipo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- [Raymond Hannawi](https://github.com/rahannawi)
+- Compañero 2 (agregar usuario)
+- Compañero 3 (agregar usuario)
+- Compañero 4 (agregar usuario)
+- Compañero 5 (agregar usuario)
 
-## React Compiler
+## Tecnologías
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend:** React 18 + Vite
+- **Lenguaje:** JavaScript
+- **Control de versiones:** Git + GitHub
 
-## Expanding the ESLint configuration
+## Requisitos
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Node.js 18 o superior
+- npm
+
+## Instalación
+
+```bash
+git clone https://github.com/rahannawi/proyecto648.git
+cd proyecto648
+npm install
+```
+
+## Uso
+
+Iniciar el servidor de desarrollo:
+
+```bash
+npm run dev
+```
+
+Luego abrir [http://localhost:5173](http://localhost:5173) en el navegador.
+
+## Estructura del proyecto
+
+```
+proyecto648/
+├── docs/           # Documentación del proyecto
+├── public/         # Archivos estáticos
+├── src/            # Código fuente
+│   ├── assets/
+│   ├── App.jsx
+│   └── main.jsx
+├── index.html
+└── package.json
+```
+
+## Flujo de trabajo
+
+Este proyecto sigue el modelo **GitHub Flow**:
+
+1. Crear una rama desde `main` para cada tarea.
+2. Trabajar localmente y commitear con mensajes claros.
+3. Abrir un Pull Request hacia `main`.
+4. Esperar revisión y aprobación de un compañero.
+5. Mergear y borrar la rama.
+
+## Licencia
+
+Este proyecto está bajo la licencia MIT. Ver [LICENSE](LICENSE) para más detalles.
