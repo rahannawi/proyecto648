@@ -1,77 +1,66 @@
-# Proyecto 648 - Sistema de Inventario de Redes (Net-Inventory)
+# 🚀 Sistema de Inventario de Redes (Net-Inventory) - Proyecto 648
 
-¡Bienvenidos al repositorio oficial del **Proyecto 648**! Este sistema ha sido diseñado para gestionar de forma eficiente y segura el inventario de equipos de red, proveedores y préstamos, con un diseño moderno y un backend robusto.
-
-## 🚀 Resumen del Primer Sprint
-
-En esta primera fase hemos dejado listo un esqueleto 100% funcional. ¿Qué se logró?
-
-1. **Diseño Moderno y Responsivo (Frontend)**:
-   - Interfaz construida en **React + Vite** con TypeScript.
-   - Tema oscuro nativo, efectos "*glassmorphism*" (cristal esmerilado) e interacciones fluidas.
-   - 4 Módulos principales: Dashboard (Inventario), Préstamos, Proveedores y Usuarios.
-
-2. **Backend Robusto y API REST (Backend)**:
-   - Construido en **C# (.NET Core)**.
-   - 4 controladores conectados (CRUD completo de Usuarios, Equipos, Proveedores y Préstamos).
-   - Manejo de ciclos JSON corregido de raíz para consultas relacionales complejas.
-
-3. **Base de Datos Limpia (MariaDB)**:
-   - Conexión configurada hacia MariaDB.
-   - Se implementó un sembrador automático (`DbSeeder.cs`) que al arrancar el servidor genera un entorno de pruebas limpio con:
-     - 3 Usuarios predefinidos (Operador, Técnico, Administrador).
-     - 1 Proveedor de pruebas.
-     - 3 Equipos de red base.
-
-4. **Reglas de Negocio Implementadas**:
-   - Mapeo estricto de roles: `0 = Administrador`, `1 = Técnico`, `2 = Operador`.
-   - Filtros inteligentes: Solo los administradores pueden aprobar préstamos, y solo los equipos en estado "Disponible" pueden ser prestados.
-   - Autoguardado al cambiar el estado de un equipo desde el modal de detalles.
+¡Bienvenidos al repositorio oficial de **Net-Inventory (Proyecto 648)**! Este sistema empresarial premium está diseñado para la gestión y auditoría automatizada de inventarios de equipos de red, proveedores, usuarios, préstamos y reseñas de la empresa. Cuenta con una interfaz moderna con efectos de **glassmorphism**, tema oscuro, y un backend empresarial robusto en **.NET 10.0** conectado a **MariaDB**.
 
 ---
 
-## 💻 Instrucciones para el Equipo (Cómo levantar el proyecto)
+## 👥 Matriz de Roles y Permisos (Reglas de Negocio Estrictas)
 
-Si es tu primera vez clonando el repositorio, sigue estos pasos para tener todo corriendo en tu máquina en menos de 2 minutos:
+El sistema implementa un control de acceso bajo roles (`0 = Administrador`, `1 = Técnico`, `2 = Usuario`) con privilegios acoplados estrictamente al backlog del proyecto:
 
-### 1. Requisitos Previos
-Asegúrate de tener instalado en tu computadora:
-- [Node.js](https://nodejs.org/) (Para correr el Frontend en React).
-- [.NET 9.0 SDK](https://dotnet.microsoft.com/download) (Para correr el servidor en C#).
-- [MariaDB](https://mariadb.org/) o MySQL Server (Para la base de datos).
-
-### 2. Configuración de la Base de Datos
-- Entra a tu cliente SQL favorito (HeidiSQL, DBeaver, MySQL Workbench) o por consola.
-- Inicia sesión con el usuario `root` y la contraseña `root` (si tu contraseña es distinta, deberás cambiarla en el archivo `backend/appsettings.json` en la línea del `DefaultConnection`).
-- **NOTA:** No necesitas crear tablas a mano. El sistema lo hará por ti usando migraciones de Entity Framework Core.
-
-### 3. Ejecutar el Backend (C#)
-Abre una terminal, navega a la carpeta del backend y ejecuta el servidor:
-```bash
-cd backend
-dotnet run
-```
-> **¿Qué pasará?** El servidor arrancará en el puerto `http://localhost:5219`. Al detectar que la base de datos está vacía, creará automáticamente la base de datos `NetInventoryDb`, construirá todas las tablas e inyectará los usuarios de prueba.
-
-### 4. Ejecutar el Frontend (React)
-Abre *otra* terminal (no cierres la del backend), navega a la carpeta frontend, instala las dependencias y corre el servidor de desarrollo:
-```bash
-cd frontend
-npm install
-npm run dev
-```
-> **¿Qué pasará?** Vite abrirá un servidor local (usualmente en `http://localhost:5173`). ¡Entra a ese enlace en tu navegador y verás la interfaz gráfica viva!
+| Módulo / Acción | Administrador (`role: 0`) | Técnico (`role: 1`) | Usuario (`role: 2`) |
+| :--- | :---: | :---: | :---: |
+| **Ver Catálogo de Equipos** | Sí | Sí | Sí (Solo Lectura) |
+| **Registrar Equipos (`+ Registrar Equipo`)** | **Sí (Exclusivo)** | No | No |
+| **Editar Estado de Equipo** | No | **Sí (Exclusivo)** | No |
+| **Ver Proveedores** | Sí | Sí | Sí |
+| **Registrar Proveedores (`+ Registrar Proveedor`)** | **Sí (Exclusivo)** | No | No |
+| **Ver Préstamos** | Sí | Sí | Sí |
+| **Registrar Préstamos (`+ Nuevo Préstamo`)** | No | **Sí (Exclusivo)** | No |
+| **Ver / Registrar Usuarios** | **Sí (Exclusivo)** | No | No |
+| **Ver Reseñas de la Empresa** | Sí | Sí | Sí |
+| **Crear Reseñas de la Empresa** | No | No | **Sí (Exclusivo)** |
 
 ---
 
-## 🧪 Usuarios de Prueba (Generados automáticamente)
+## 💻 Instrucciones para Levantar el Proyecto (Fácil en 1 Clic)
 
-Para que no tengan que registrar usuarios manualmente al hacer pruebas, la base de datos siempre inicia con estas tres cuentas:
+Hemos optimizado el despliegue del proyecto para que tus compañeros puedan configurarlo en sus computadoras de forma instantánea sin escribir comandos manuales repetitivos.
 
-| Nombre | Rol Lógico | Descripción |
-| :--- | :--- | :--- |
-| **Ana Gomez** | `Administrador` | Tiene autoridad para aparecer en la lista de "Aprobadores" de préstamos. |
-| **Carlos Martinez** | `Técnico` | Personal de nivel intermedio para gestión de equipos. |
-| **Juan Perez** | `Operador` | Usuario raso que puede recibir equipos en calidad de préstamo. |
+### 1. Requisitos Previos e Instalación
+Asegúrate de tener instalado lo siguiente en tu máquina Windows:
+1. **Node.js** (Versión 18 o superior) -> Descargar de [nodejs.org](https://nodejs.org/).
+2. **.NET 10.0 SDK** (o superior) -> Descargar de [dotnet.microsoft.com](https://dotnet.microsoft.com/).
+3. **MariaDB 12.2** (o superior) -> Descargar de [mariadb.org](https://mariadb.org/).
 
-¡Mucho éxito con el código y a seguir dándole forma al Proyecto 648!
+### 2. Configuración de Base de Datos y Arranque en 1 Clic
+* En la raíz de tu proyecto encontrarás el archivo **`Iniciar-Proyecto.bat`**. 
+* **Simplemente haz doble clic sobre `Iniciar-Proyecto.bat`** y el script se encargará automáticamente de:
+  1. Iniciar el servicio local de la base de datos MariaDB (en el puerto 3306).
+  2. Restaurar dependencias, compilar y levantar el backend de C# (`http://localhost:5219`).
+  3. Instalar las dependencias de node, compilar y ejecutar el servidor de desarrollo del frontend de Vite (`http://localhost:5173`).
+  4. Abrir automáticamente tu navegador web predeterminado en el sistema de inventario.
+
+---
+
+## 🧪 Usuarios de Prueba Autogenerados (Base de Datos Limpia)
+
+Cada vez que el backend se inicia, el sembrador (`DbSeeder.cs`) realiza una limpieza total de las tablas y genera datos de prueba limpios con credenciales consistentes:
+
+* **Usuario General (Solo Lectura y Reseñas):**
+  * **Email:** `usuario@test.com` | **Clave:** `123` | **Nombre:** Juan Perez
+* **Personal Técnico (Préstamos y Edición de Equipos):**
+  * **Email:** `tecnico@test.com` | **Clave:** `123` | **Nombre:** Carlos Martinez
+* **Administrador (Registro de Equipos, Proveedores y Usuarios):**
+  * **Email:** `admin@test.com` | **Clave:** `123` | **Nombre:** Ana Gomez
+
+---
+
+## 📊 Vista SQL Integrada para HeidiSQL
+Para auditar los préstamos de forma legible en tu gestor de base de datos SQL (como HeidiSQL), el sembrador crea automáticamente una vista de base de datos llamada **`v_prestamos_detalles`**. Al consultarla mediante:
+
+```sql
+SELECT * FROM v_prestamos_detalles;
+```
+
+Obtendrás una tabla perfectamente legible donde los identificadores numéricos se reemplazan por los nombres reales de los equipos, marcas, modelos y nombres de los técnicos o solicitantes involucrados.

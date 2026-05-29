@@ -22,3 +22,15 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# .NET / C# compiled folders
+bin/
+obj/
+backend/bin/
+backend/obj/
+
+# Vite/frontend folders
+.vite/
+frontend/node_modules/
+frontend/dist/
+
